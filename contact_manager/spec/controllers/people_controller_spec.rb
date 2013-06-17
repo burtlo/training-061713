@@ -23,7 +23,9 @@ describe PeopleController do
   # This should return the minimal set of attributes required to create a valid
   # Person. As you add validations to Person, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "first_name" => "MyString" } }
+  let(:valid_attributes) do
+    { "first_name" => "MyString", "last_name" => "Last Name" }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -32,7 +34,7 @@ describe PeopleController do
 
   describe "GET index" do
     it "assigns all people as @people" do
-      person = Person.create! valid_attributes
+      person = Person.create valid_attributes
       get :index, {}, valid_session
       assigns(:people).should eq([person])
     end
