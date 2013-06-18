@@ -34,4 +34,8 @@ describe Person do
     end
   end
 
+  it "has many phone numbers" do
+    expect(person.phone_numbers).to eq([])
+  end
+
 end
