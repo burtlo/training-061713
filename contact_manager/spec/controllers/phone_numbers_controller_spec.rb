@@ -65,6 +65,12 @@ describe PhoneNumbersController do
 
   describe "POST create" do
     describe "with valid params" do
+
+      let(:person) { Person.create(first_name: "Alice", last_name: "Smith") }
+      let(:valid_attributes) do
+        { number: '0123456789', person_id: person.id }
+      end
+
       it "creates a new PhoneNumber" do
         expect {
           post :create, {:phone_number => valid_attributes}, valid_session
@@ -77,9 +83,10 @@ describe PhoneNumbersController do
         assigns(:phone_number).should be_persisted
       end
 
-      it "redirects to the created phone_number" do
+      it "redirects to the person that this phone number belongs" do
         post :create, {:phone_number => valid_attributes}, valid_session
-        response.should redirect_to(PhoneNumber.last)
+        response.should redirect_to(person)
+        response.should redirect_to(person_path(person))
       end
     end
 

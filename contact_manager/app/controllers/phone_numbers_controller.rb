@@ -24,7 +24,7 @@ class PhoneNumbersController < ApplicationController
   # GET /phone_numbers/new
   # GET /phone_numbers/new.json
   def new
-    @phone_number = PhoneNumber.new
+    @phone_number = PhoneNumber.new(person_id: params[:person_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +40,14 @@ class PhoneNumbersController < ApplicationController
   # POST /phone_numbers
   # POST /phone_numbers.json
   def create
+    # params = { phone_number: { number: '0123456789', person_id: person.id } }
+    # params[:phone_number] = { number: '0123456789', person_id: person.id }
+    # PhoneNumber.new number: '0123456789', person_id: person.id
     @phone_number = PhoneNumber.new(params[:phone_number])
 
     respond_to do |format|
       if @phone_number.save
-        format.html { redirect_to @phone_number, notice: 'Phone number was successfully created.' }
+        format.html { redirect_to @phone_number.person, notice: 'Phone number was successfully created.' }
         format.json { render json: @phone_number, status: :created, location: @phone_number }
       else
         format.html { render action: "new" }
