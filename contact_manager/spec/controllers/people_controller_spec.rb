@@ -34,7 +34,7 @@ describe PeopleController do
 
   describe "GET index" do
     it "assigns all people as @people" do
-      person = Person.create valid_attributes
+      person = Person.create! valid_attributes
       get :index, {}, valid_session
       assigns(:people).should eq([person])
     end
