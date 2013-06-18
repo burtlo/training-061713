@@ -12,7 +12,11 @@
 
 <ul>
 <% @person.phone_numbers.each do |phone| %>
-  <li><%= phone.number %></li>
+  <li>
+    <%= phone.number %>
+    <%= link_to 'edit', edit_phone_number_path(phone), id: "edit-phone-#{phone.id}" %>
+    <%= link_to 'delete', phone_number_path(phone), id: "delete-phone-#{phone.id}", method: :delete, confirm: 'Are you sure?' %>
+  </li>
 <% end %>
 </ul>
 
