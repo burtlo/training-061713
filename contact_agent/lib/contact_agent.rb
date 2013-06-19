@@ -2,6 +2,7 @@ require "contact_agent/version"
 require "faraday"
 require "multi_json"
 require "oj"
+require "ostruct"
 
 module ContactAgent
 
@@ -20,7 +21,11 @@ module ContactAgent
       response = @connection.get "/people.json"
       # return the people response
 
-      MultiJson.load response.body
+      result = MultiJson.load response.body
+
+      result["people"].map do |person_hash|
+        OpenStruct.new(person_hash)
+      end
     end
   end
 end
