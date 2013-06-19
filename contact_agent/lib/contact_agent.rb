@@ -2,9 +2,31 @@ require "contact_agent/version"
 require "faraday"
 require "multi_json"
 require "oj"
-require "ostruct"
+require "hashie"
 
 module ContactAgent
+
+  class PhoneNumber
+    attr_accessor :number
+
+    def initialize(hash)
+      @number = hash['number']
+    end
+  end
+
+  class Person
+
+    def initialize(hash)
+      @name = hash['name']
+      @phone_numbers = hash['phone_numbers'].map {|phone| PhoneNumber.new(phone) }
+    end
+
+    attr_accessor :name, :phone_numbers
+
+    def primary_phone_number
+      phone_numbers.first.number
+    end
+  end
 
   class Client
 
@@ -23,9 +45,7 @@ module ContactAgent
 
       result = MultiJson.load response.body
 
-      result["people"].map do |person_hash|
-        OpenStruct.new(person_hash)
-      end
+      result["people"].map { |person| Person.new(person) }
     end
   end
 end
