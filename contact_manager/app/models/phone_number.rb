@@ -4,4 +4,5 @@ class PhoneNumber < ActiveRecord::Base
 
   validates :person_id, presence: true
   validates :number, format: { with: /\A\d{10}\z/ }
+
 end

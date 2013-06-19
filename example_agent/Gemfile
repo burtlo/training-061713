@@ -1,0 +1,4 @@
+source 'https://rubygems.org'
+
+# gem 'contact_agent', git: "git@github.com:burtlo/contact_agent.git"
+gem 'contact_agent', path: "../contact_agent"

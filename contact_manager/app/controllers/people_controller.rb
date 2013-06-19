@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+
   # GET /people
   # GET /people.json
   def index
@@ -7,6 +8,22 @@ class PeopleController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @people }
+
+      # format.json
+
+      # format.json do
+
+      #   formatted_people = []
+
+      #   @people.each do |person|
+      #     # model.id model.first_name model.last_name
+      #     # id and name
+      #     formatted_people.push({ id: person.id, name: "#{person.first_name} #{person.last_name }"})
+      #   end
+
+      #   render json: formatted_people
+      # end
+      # format.json { render json: { query: "all", people: @people } }
     end
   end
 
