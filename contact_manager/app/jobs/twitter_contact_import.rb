@@ -1,7 +1,7 @@
 class TwitterContactImport
   @queue = :twitter_contact_import_queue
 
-  # We pass in { user_id: NUMBER }
+  # We pass in { "user_id" => NUMBER }
   def self.perform(params)
 
     puts "Starting to Performing Twitter Contact Import #{params["retry_attempt"].to_i}"
