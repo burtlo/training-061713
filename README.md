@@ -68,15 +68,19 @@ $ brew install apache
 ```
 
 * Mountable Frameworks
-* Apache
 
 ## Friday and Beyond
 
-* Memcache / Caching
-* Factory Girl
+* RSpec
+
 * Rails 4 Differences
-* Strong Parameters
+** Strong Parameters
+
 * Performance
+** Memcache / Caching
+** Bullet Gem (N+1 Queries)
+
+* Factory Girl
 
 ## Contact Manager - Feedback
 
