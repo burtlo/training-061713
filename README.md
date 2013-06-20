@@ -59,6 +59,14 @@ $ bundle info passenger
 $ which passenger_ruby
 ```
 
+* Apache
+
+Proxy Passing (`httpd.conf`)
+
+```
+$ brew install apache
+```
+
 * Mountable Frameworks
 * Apache
 
