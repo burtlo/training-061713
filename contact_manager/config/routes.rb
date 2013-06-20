@@ -4,6 +4,7 @@ ContactManager::Application.routes.draw do
 
   resources :people
 
+  mount Resque::Server, :at => "/resque"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

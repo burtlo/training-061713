@@ -5,6 +5,9 @@ class PeopleController < ApplicationController
   def index
     @people = Person.all
 
+    Resque.enqueue(FacebookContactImport,user_id: 1)
+    Resque.enqueue(TwitterContactImport,user_id: 1)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @people }

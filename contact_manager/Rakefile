@@ -5,3 +5,12 @@
 require File.expand_path('../config/application', __FILE__)
 
 ContactManager::Application.load_tasks
+
+require "resque/tasks"
+
+task "resque:setup" => :environment
+
+desc "Start importing contacts for all users"
+task :all_facebook_contact_import => :environment do
+  Resque.enqueue(AllFacebookContactImport,{})
+end
