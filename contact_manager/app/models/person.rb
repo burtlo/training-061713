@@ -5,6 +5,18 @@ class Person < ActiveRecord::Base
 
   has_many :phone_numbers
 
+  after_save :clear_caches
+  after_destroy :clear_caches
+
+  def clear_caches
+    puts %{
+
+      CLEARING CACHE FROM THE MODEL
+
+    }
+    Rails.cache.delete('people-all')
+  end
+
   def name
     [ first_name, last_name ].join(" ")
   end

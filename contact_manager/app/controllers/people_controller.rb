@@ -1,9 +1,13 @@
 class PeopleController < ApplicationController
 
+  after_filter :clear_caches, only: [ :create, :update, :destroy ]
+
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = Rails.cache.fetch("people-all",expires_in: CacheTime.all_people) do
+      Person.all
+    end
 
     Resque.enqueue(FacebookContactImport,user_id: 1)
     Resque.enqueue(TwitterContactImport,user_id: 1)
@@ -65,6 +69,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
+
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render json: @person, status: :created, location: @person }
       else
@@ -81,6 +86,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(person_params)
+
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { head :no_content }
       else
@@ -100,6 +106,15 @@ class PeopleController < ApplicationController
       format.html { redirect_to people_url }
       format.json { head :no_content }
     end
+  end
+
+  def clear_caches
+    puts %{
+
+      CLEARING CACHE FROM THE CONTROLLER
+
+    }
+    Rails.cache.delete('people-all')
   end
 
   def person_params

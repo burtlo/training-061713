@@ -5,6 +5,7 @@ gem 'unicorn'
 gem "active_model_serializers"
 gem 'resque', require: "resque/server"
 gem 'strong_parameters'
+gem 'dalli'
 
 gem 'passenger'
 

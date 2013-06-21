@@ -53,6 +53,8 @@ module ContactManager
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = false
 
+    config.active_record.observers = :person_observer
+
     # Enable the asset pipeline
     config.assets.enabled = true
 
