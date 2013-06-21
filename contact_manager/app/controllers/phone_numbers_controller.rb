@@ -43,7 +43,7 @@ class PhoneNumbersController < ApplicationController
     # params = { phone_number: { number: '0123456789', person_id: person.id } }
     # params[:phone_number] = { number: '0123456789', person_id: person.id }
     # PhoneNumber.new number: '0123456789', person_id: person.id
-    @phone_number = PhoneNumber.new(params[:phone_number])
+    @phone_number = PhoneNumber.new(phone_number_params)
 
     respond_to do |format|
       if @phone_number.save
@@ -82,5 +82,9 @@ class PhoneNumbersController < ApplicationController
       format.html { redirect_to @phone_number.person }
       format.json { head :no_content }
     end
+  end
+
+  def phone_number_params
+    params.require(:phone_number).permit(:number)
   end
 end

@@ -4,6 +4,9 @@ gem 'rails', '3.2.13'
 gem 'unicorn'
 gem "active_model_serializers"
 gem 'resque', require: "resque/server"
+gem 'strong_parameters'
+
+gem 'passenger'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

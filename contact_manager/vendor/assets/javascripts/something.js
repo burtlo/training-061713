@@ -1,1 +1,1 @@
-alert('alert from vendor/something');
+//alert('alert from vendor/something');

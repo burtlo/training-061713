@@ -1,10 +1,10 @@
 ContactManager::Application.routes.draw do
   resources :phone_numbers
-
-
   resources :people
 
   mount Resque::Server, :at => "/resque"
+
+  root to: "people#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
