@@ -1,88 +1,19 @@
-# Training
-
-## Monday and Tuesday
-
-* RVM
-* RBENV
-* RSpec
-
-## Wednesday
-
-* JSON API
-* RESTful Services
-* Building Gems
-
-## Thursday
-
-* Redis / Resque Workers
+# Server
 
 ```
-$ brew install redis
-$ redis-server
+thin start -R config.ru
 ```
 
-* Asset Pipeline
-
-* Passenger
+# Web Client
 
 ```
-$ gem install passenger
-$ passenger start
-$ RAILS_ENV=production rake db:migrate
-$ rake assets:precompile
-$ RAILS_ENV=production passenger start
+open http://localhost:3000/
 ```
 
-* Nginx
+# Ruby Client
 
-Default Nginx Configuration (`nginx-proxy_pass.conf`)
-
-```
-$ brew install nginx --with-passenger
-# Start Nginx
-$ nginx
-# Stop Nginx
-$ nginx -s stop
-```
-
-Nginx Passenger Configuration (`nginx-passenger_boot.conf`)
+This is a read only, passive interface that will just parrot all the data it receives from the "/messages/public"
 
 ```
-$ brew install nginx --with-passenger
-# Start Nginx
-$ nginx
-# Stop Nginx
-$ nginx -s stop
-$ rvm wrapper ruby-1.9.2-p290 passenger
-# Find the location of the passenger gem and find the location of the passenger ruby
-$ bundle info passenger
-$ which passenger_ruby
+ruby client.rb
 ```
-
-* Apache
-
-Proxy Passing (`httpd.conf`)
-
-```
-$ brew install apache
-```
-
-* Mountable Frameworks
-
-## Friday and Beyond
-
-* RSpec
-
-* Rails 4 Differences
-** Strong Parameters
-
-* Performance
-** Memcache / Caching
-** Bullet Gem (N+1 Queries)
-
-* Factory Girl
-
-## Contact Manager - Feedback
-
-* Remove branches after completing the iterations
-* page 18 the controller valid attributes is now let and not def
