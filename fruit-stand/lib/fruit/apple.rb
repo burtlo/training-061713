@@ -1,34 +1,50 @@
 module Fruit
 
-  module Sliceable
+  class Apple
+    attr_reader :variety
+
+    def initialize(variety=default_variety)
+      @variety = variety
+      @birthdate = Time.now
+    end
+
+    def size
+      @size ||= Array.new generate_slice_amount
+    end
 
     def slice(amount=default_slice_amount)
-      @total_slices.pop(amount).length
+      size.pop(amount).length
     end
 
     def remaining_slices
-      @total_slices.length
+      size.length
+    end
+
+    def ripe?
+      age > age_when_ripe
+    end
+
+    def unripe?
+      !ripe?
+    end
+
+    private
+
+    def age
+      Time.now - @birthdate
+    end
+
+    def age_when_ripe
+      10
     end
 
     def default_slice_amount
       1
     end
 
-    def default_total_slices
-      8
+    def generate_slice_amount
+      rand(5..9)
     end
-
-  end
-
-  class Apple
-    attr_reader :variety
-
-    def initialize(variety=default_variety)
-      @variety = variety
-      @total_slices = Array.new(default_total_slices)
-    end
-
-    include Sliceable
 
     def default_variety
       "Granny Smith"

@@ -31,6 +31,11 @@ Using stub, with, and and_return
 
 Not all apples are created equal. Apples are created actually created with a random size from 5 slices to 9 slices.
 
+```
+rand(5) + 5
+rand(5..9)
+```
+
 Create a new specification to capture this new feature.
 Update your existing specifications so that they still reliably work.
 
