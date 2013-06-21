@@ -1,0 +1,40 @@
+<html>
+  <head>
+  </head>
+  <body>
+
+<div id="public-messages">
+
+</div>
+
+<input id="message" type="text" />
+
+<a id="chat-submit">Chat</a>
+
+<script type="text/javascript" src="/jquery-2.0.2.js"></script>
+
+<script type="text/javascript" src="/faye/client.js">
+</script>
+
+  <script type="text/javascript">
+    $(function() {
+    client = new Faye.Client('/faye');
+
+    client.subscribe("/card-images/receive",function(data) {
+      console.log("Got Data");
+
+      $("#public-messages").append("<img src='" + data.url + "'' />");
+    });
+
+    $('#chat-submit').on("click",function() {
+      client.publish("/card-images/create/1213423535213", {
+        message: $("#message").val()
+      });
+    });
+
+    });
+  </script>
+  </body>
+
+
+</html>
