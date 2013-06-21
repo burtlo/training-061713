@@ -38,6 +38,13 @@ describe Fruit::Apple do
     end
   end
 
+  describe "#size" do
+    it "is created with a size from the weather service" do
+      Fruit::Weather.should_receive(:report).with(:apple).and_return(8)
+      expect(subject.size).to eq Array.new(8)
+    end
+  end
+
   describe "#slice" do
 
     let(:subject) do

@@ -9,7 +9,7 @@ module Fruit
     end
 
     def size
-      @size ||= Array.new generate_slice_amount
+      @size ||= Array.new(Weather.report(:apple))
     end
 
     def slice(amount=default_slice_amount)
@@ -40,10 +40,6 @@ module Fruit
 
     def default_slice_amount
       1
-    end
-
-    def generate_slice_amount
-      rand(5..9)
     end
 
     def default_variety
