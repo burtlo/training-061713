@@ -1,5 +1,6 @@
 require 'contact_agent'
 require 'pp'
+require 'debugger'
 
 puts ContactAgent::VERSION
 
